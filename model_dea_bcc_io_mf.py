@@ -3,7 +3,7 @@ import pandas as pd
 import logging
 import time
 import data_info
-from gurobipy import Model, GRB
+from gurobipy import Model, GRB, quicksum
 
 def solve_dea(target_dmu, p_inputs, p_outputs):
     n_inputs = p_inputs.shape[1]
