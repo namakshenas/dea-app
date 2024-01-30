@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import pulp as pu
 import logging
 import time
 import data_info

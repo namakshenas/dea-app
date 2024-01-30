@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from gurobipy import Model, GRB
 import logging
 import time
 import data_info
