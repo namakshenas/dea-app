@@ -20,8 +20,8 @@ def solve_dea(target_dmu, p_inputs, p_outputs):
     model = Model("DEA_Problem")
     
     # Decision variables
-    v_win = model.addVar(s_input, lb=0.00001)
-    v_wout = model.addVar(s_output, lb=0.00001)
+    v_win = model.addVars(s_input, lb=0.00001)
+    v_wout = model.addVars(s_output, lb=0.00001)
     v_tolerance = model.addVar()
     
     # Model constraints
