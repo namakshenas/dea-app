@@ -5,9 +5,6 @@ import time
 import data_info
 from gurobipy import Model, GRB
 
-cwd = os.getcwd()
-path_to_cplex = os.path.join(cwd, r"assets\cplex\cplex.exe")
-
 
 def solve_dea(target_dmu, p_inputs, p_outputs):
     n_inputs = p_inputs.shape[1]
