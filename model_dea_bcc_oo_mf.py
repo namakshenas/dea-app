@@ -50,7 +50,7 @@ def solve_dea(target_dmu, p_inputs, p_outputs):
     # Model objective
     model.setObjective(
         quicksum(p_inputs[p_target_dmu][r] * v_win[r] for r in s_input) - v_tolerance,
-        sense=GRB.MINIMIZE
+        GRB.MINIMIZE
     )
     
     # Optimize the model
