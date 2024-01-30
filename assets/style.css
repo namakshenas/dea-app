@@ -1,0 +1,225 @@
+.modebar{
+      display: none !important;
+}
+
+/*
+*[data-dash-is-loading="true"]{
+    visibility: hidden;
+}
+*[data-dash-is-loading="true"]::before{
+    content: "Loading, please be patient...";
+    display: inline-block;
+    visibility: visible;
+}
+*/
+
+.rc-slider-track {
+  background-color: blue;
+}
+
+.rc-slider-dot-active {
+  border-color: blue;
+  border: solid 2px blue;
+}
+
+.rc-slider-handle {
+  background-color: blue;
+  border-color: blue;
+}
+
+.rc-slider-handle:hover {
+  border-color: blue;
+}
+
+.rc-slider-handle-active:active {
+  border-color: blue;
+}
+
+
+._dash-loading {
+  margin: auto;
+  color: transparent;
+  width: 0;
+  height: 0;
+  text-align: center;
+}
+
+._dash-loading::after {
+  content: 'DEA';
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  color: black;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  margin-top: 5rem;
+}
+
+
+.container {
+max-width: 100%;
+display: inline-block;
+}
+
+/*
+svg:nth-child(1) > g.cartesianlayer > g > g.plot > g > g:nth-child(2) > g > g:nth-child(1) > path,
+svg:nth-child(1) > g.cartesianlayer > g > g.plot > g > g:nth-child(2) > g > g:nth-child(2) > path  {
+  clip-path: inset(0% 0% 0% 0% round 100px);
+} */
+
+/*
+._dash-loading {
+  margin: auto;
+  color: transparent;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+}
+
+._dash-loading::after {
+  font-size: 60px;
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  color: #000;
+  border-radius: 50%;
+  margin: 72px auto;
+  vertical-align: text-bottom;
+  -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  margin-top: 2rem;
+}
+
+@-webkit-keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em,
+      -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em,
+      -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em,
+      -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em,
+      -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em,
+      -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em,
+      -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em,
+      -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em,
+      -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em,
+      -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em,
+      -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em,
+      -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em,
+      -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@-webkit-keyframes round {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes round {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+*/
+
+/*
+._dash-loading {
+content: "D E A";
+  margin: auto;
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  display: inline-block;
+  color: #FF3D00;
+  letter-spacing: 2px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+._dash-loading::after {
+
+  content: 'D E A';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #FFF;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  vertical-align: text-bottom;
+  animation: animloader 6s linear infinite;
+}
+
+
+@keyframes animloader {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+*/
+
+
+
+
+
