@@ -42,7 +42,7 @@ def solve_dea(target_dmu, p_inputs, p_outputs):
     # model objective
     model.setObjective(
         quicksum(p_outputs[p_target_dmu][r] * v_wout[r] for r in s_output),
-        sense=GRB.MAXIMIZE
+        GRB.MAXIMIZE
     )
     
     model.optimize()
