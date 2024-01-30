@@ -7,7 +7,7 @@ from dash import Dash, dcc, html, dash_table, Input, Output, callback, State, ca
 from dash.exceptions import PreventUpdate
 import plotly.express as px
 import dash_bootstrap_components as dbc
-import dash_auth
+# import dash_auth
 import pandas as pd
 import logging
 import model_selection
@@ -18,9 +18,9 @@ from flask import request
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
-VALID_USERNAME_PASSWORD_PAIRS = {
-    'scigate': 'scigate'
-}
+# VALID_USERNAME_PASSWORD_PAIRS = {
+#     'scigate': 'scigate'
+# }
 
 # df = pd.DataFrame()
 # df["DMU Index"] = []
@@ -34,10 +34,10 @@ app = Dash(__name__,
 app.css.config.serve_locally = True
 app.scripts.config.serve_locally = True
 
-auth = dash_auth.BasicAuth(
-    app,
-    VALID_USERNAME_PASSWORD_PAIRS
-)
+# auth = dash_auth.BasicAuth(
+#     app,
+#     VALID_USERNAME_PASSWORD_PAIRS
+# )
 app.title = "Efficiency Analysis"
 server = app.server
 header = html.Div(
