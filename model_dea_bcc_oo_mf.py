@@ -4,7 +4,7 @@ import pulp as pu
 import logging
 import time
 import data_info
-import os
+from gurobipy import Model, GRB
 
 cwd = os.getcwd()
 path_to_cplex = os.path.join(cwd, r"assets\cplex\cplex.exe")
@@ -21,42 +21,42 @@ def solve_dea(target_dmu, p_inputs, p_outputs):
 
     p_target_dmu = target_dmu
 
-    # decision variables
-    v_win = pu.LpVariable.dicts("inputWeight", s_input, lowBound=0.00001)
-    v_wout = pu.LpVariable.dicts("outputWeight", s_output, lowBound=0.00001)
-    v_tolerance = pu.LpVariable("tolerance")
-
-    # model definition
-    model = pu.LpProblem("DEA_Problem", pu.LpMinimize)
-
-    # model constraints
+    # Create a Gurobi model
+    model = Model("DEA_Problem")
+    
+    # Decision variables
+    v_win = model.addVars(s_input, lb=0.00001)
+    v_wout = model.addVars(s_output, lb=0.00001)
+    v_tolerance = model.addVar()
+    
+    # Update the model to include the variables
+    model.update()
+    
+    # Model constraints
     for d in s_dmu:
-        model += pu.lpSum(p_outputs[d][r] * v_wout[r] for r in s_output) + v_tolerance <= \
-                 pu.lpSum(p_inputs[d][i] * v_win[i] for i in s_input)
+        model.addConstr(
+            quicksum(p_outputs[d][r] * v_wout[r] for r in s_output) + v_tolerance
+            <= quicksum(p_inputs[d][i] * v_win[i] for i in s_input)
+        )
+    
+    model.addConstr(
+        quicksum(p_outputs[p_target_dmu][i] * v_wout[i] for i in s_output) <= 1
+    )
+    
+    model.addConstr(
+        quicksum(p_outputs[p_target_dmu][i] * v_wout[i] for i in s_output) >= 0.99999
+    )
+    
+    # Model objective
+    model.setObjective(
+        quicksum(p_inputs[p_target_dmu][r] * v_win[r] for r in s_input) - v_tolerance,
+        sense=GRB.MINIMIZE
+    )
+    
+    # Optimize the model
+    model.optimize()
 
-    model += pu.lpSum([p_outputs[p_target_dmu][i] * v_wout[i] for i in s_output]) <= 1
-    model += pu.lpSum([p_outputs[p_target_dmu][i] * v_wout[i] for i in s_output]) >= 0.99999
-
-    # model objective
-    model += pu.lpSum(p_inputs[p_target_dmu][r] * v_win[r] for r in s_input) - v_tolerance
-
-    # PuLP's choice of Solver
-    # solver = pu.COIN_CMD(path='/cbc/bin')
-    # model.solve(solver)
-    # model.solve(pu.PULP_CBC_CMD(msg=False))
-
-    # path_to_cplex = r"C:\Users\Monash\PycharmProjects\dash-bootstrap\assets\cplex\cplex.exe"
-    solver = pu.CPLEX_CMD(path=path_to_cplex, msg=False)
-    model.solve(solver)
-
-    # The status of the solution
-    # print("Status:", pu.LpStatus[model.status])
-
-    # Each of the variables is printed with it's resolved optimum value
-    # for v in model.variables():
-    #     print(v.name, "=", v.varValue)
-
-    return pu.value(model.objective)
+    return model.objVal
 
 
 def run_model(uploadDataFrame):
